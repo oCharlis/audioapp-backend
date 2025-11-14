@@ -29,24 +29,25 @@ public class FilesController : ControllerBase
     }
 
     [HttpPost("upload")]
-    [RequestSizeLimit(50_000_000)] // 50 MB, adjust as needed
-    public async Task<IActionResult> Upload([FromForm] IFormFile file)
-    {
-        if (file == null || file.Length == 0)
-            return BadRequest("File is empty");
+public async Task<IActionResult> Upload([FromForm] IFormFile file)
+{
+    if (file == null || file.Length == 0)
+        return BadRequest("File is empty");
 
-        var userOid = GetUserObjectId();
-        var containerClient = _blobServiceClient.GetBlobContainerClient(ContainerName);
-        await containerClient.CreateIfNotExistsAsync();
+    var oid = User.FindFirstValue("oid");
+    if (oid == null)
+        return Unauthorized("OID claim missing");
 
-        var blobName = $"users/{userOid}/{Guid.NewGuid()}-{file.FileName}";
-        var blobClient = containerClient.GetBlobClient(blobName);
+    var container = _blobServiceClient.GetBlobContainerClient("user-audio");
+    await container.CreateIfNotExistsAsync();
 
-        using var stream = file.OpenReadStream();
-        await blobClient.UploadAsync(stream, overwrite: false);
+    var blob = container.GetBlobClient($"users/{oid}/{Guid.NewGuid()}-{file.FileName}");
 
-        return Ok(new { name = file.FileName });
-    }
+    using var stream = file.OpenReadStream();
+    await blob.UploadAsync(stream);
+
+    return Ok(new { message = "Uploaded successfully" });
+}
 
     [HttpGet("list")]
     public async Task<IActionResult> List()
