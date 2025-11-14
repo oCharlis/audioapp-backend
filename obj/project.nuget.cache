@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "lVVwa18lWLw=",
-  "success": false,
+  "dgSpecHash": "DgaZ/LOZoJ0=",
+  "success": true,
   "projectFilePath": "C:\\Users\\jampa\\app\\backend\\MyAudioApi.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\jampa\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
-    "C:\\Users\\jampa\\.nuget\\packages\\azure.identity\\1.11.0\\azure.identity.1.11.0.nupkg.sha512",
+    "C:\\Users\\jampa\\.nuget\\packages\\azure.core\\1.40.0\\azure.core.1.40.0.nupkg.sha512",
+    "C:\\Users\\jampa\\.nuget\\packages\\azure.identity\\1.12.0\\azure.identity.1.12.0.nupkg.sha512",
     "C:\\Users\\jampa\\.nuget\\packages\\azure.security.keyvault.certificates\\4.6.0\\azure.security.keyvault.certificates.4.6.0.nupkg.sha512",
     "C:\\Users\\jampa\\.nuget\\packages\\azure.security.keyvault.secrets\\4.6.0\\azure.security.keyvault.secrets.4.6.0.nupkg.sha512",
     "C:\\Users\\jampa\\.nuget\\packages\\azure.storage.blobs\\12.19.0\\azure.storage.blobs.12.19.0.nupkg.sha512",
@@ -32,8 +32,8 @@
     "C:\\Users\\jampa\\.nuget\\packages\\microsoft.extensions.options.configurationextensions\\8.0.0\\microsoft.extensions.options.configurationextensions.8.0.0.nupkg.sha512",
     "C:\\Users\\jampa\\.nuget\\packages\\microsoft.extensions.primitives\\8.0.0\\microsoft.extensions.primitives.8.0.0.nupkg.sha512",
     "C:\\Users\\jampa\\.nuget\\packages\\microsoft.identity.abstractions\\5.3.0\\microsoft.identity.abstractions.5.3.0.nupkg.sha512",
-    "C:\\Users\\jampa\\.nuget\\packages\\microsoft.identity.client\\4.60.3\\microsoft.identity.client.4.60.3.nupkg.sha512",
-    "C:\\Users\\jampa\\.nuget\\packages\\microsoft.identity.client.extensions.msal\\4.60.1\\microsoft.identity.client.extensions.msal.4.60.1.nupkg.sha512",
+    "C:\\Users\\jampa\\.nuget\\packages\\microsoft.identity.client\\4.61.3\\microsoft.identity.client.4.61.3.nupkg.sha512",
+    "C:\\Users\\jampa\\.nuget\\packages\\microsoft.identity.client.extensions.msal\\4.61.3\\microsoft.identity.client.extensions.msal.4.61.3.nupkg.sha512",
     "C:\\Users\\jampa\\.nuget\\packages\\microsoft.identity.web\\2.19.0\\microsoft.identity.web.2.19.0.nupkg.sha512",
     "C:\\Users\\jampa\\.nuget\\packages\\microsoft.identity.web.certificate\\2.19.0\\microsoft.identity.web.certificate.2.19.0.nupkg.sha512",
     "C:\\Users\\jampa\\.nuget\\packages\\microsoft.identity.web.certificateless\\2.19.0\\microsoft.identity.web.certificateless.2.19.0.nupkg.sha512",
@@ -67,29 +67,5 @@
     "C:\\Users\\jampa\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.22\\microsoft.aspnetcore.app.ref.8.0.22.nupkg.sha512",
     "C:\\Users\\jampa\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\8.0.22\\microsoft.netcore.app.host.win-x64.8.0.22.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1902",
-      "level": "Warning",
-      "message": "Package 'Azure.Identity' 1.11.0 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-m5vv-6r4h-3vj9",
-      "projectPath": "C:\\Users\\jampa\\app\\backend\\MyAudioApi.csproj",
-      "warningLevel": 1,
-      "filePath": "C:\\Users\\jampa\\app\\backend\\MyAudioApi.csproj",
-      "libraryId": "Azure.Identity",
-      "targetGraphs": [
-        "net8.0"
-      ]
-    },
-    {
-      "code": "NU1605",
-      "level": "Error",
-      "message": "Warning As Error: Detected package downgrade: Azure.Identity from 1.11.1 to 1.11.0. Reference the package directly from the project to select a different version. \r\n MyAudioApi -> Microsoft.Identity.Web 2.19.0 -> Microsoft.Identity.Web.Certificateless 2.19.0 -> Azure.Identity (>= 1.11.1) \r\n MyAudioApi -> Azure.Identity (>= 1.11.0)",
-      "projectPath": "C:\\Users\\jampa\\app\\backend\\MyAudioApi.csproj",
-      "filePath": "C:\\Users\\jampa\\app\\backend\\MyAudioApi.csproj",
-      "libraryId": "Azure.Identity",
-      "targetGraphs": [
-        "net8.0"
-      ]
-    }
-  ]
+  "logs": []
 }

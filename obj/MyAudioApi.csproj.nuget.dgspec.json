@@ -46,7 +46,7 @@
           "dependencies": {
             "Azure.Identity": {
               "target": "Package",
-              "version": "[1.11.0, )"
+              "version": "[1.12.0, )"
             },
             "Azure.Storage.Blobs": {
               "target": "Package",
