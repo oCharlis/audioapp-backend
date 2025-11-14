@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace MyAudioApi.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/files")]        // 👈 FIXED: lowercase & explicit routing
 [Authorize]
 public class FilesController : ControllerBase
 {
@@ -28,27 +28,34 @@ public class FilesController : ControllerBase
         return oid;
     }
 
+    // ------------------------------------------------------------
+    // UPLOAD FILE
+    // ------------------------------------------------------------
     [HttpPost("upload")]
-public async Task<IActionResult> Upload([FromForm] IFormFile file)
-{
-    if (file == null || file.Length == 0)
-        return BadRequest("File is empty");
+    public async Task<IActionResult> Upload([FromForm] IFormFile file)
+    {
+        if (file == null || file.Length == 0)
+            return BadRequest("File is empty");
 
-    var oid = User.FindFirstValue("oid");
-    if (oid == null)
-        return Unauthorized("OID claim missing");
+        var oid = User.FindFirstValue("oid");
+        if (oid == null)
+            return Unauthorized("OID claim missing");
 
-    var container = _blobServiceClient.GetBlobContainerClient("user-audio");
-    await container.CreateIfNotExistsAsync();
+        var container = _blobServiceClient.GetBlobContainerClient(ContainerName);
+        await container.CreateIfNotExistsAsync();
 
-    var blob = container.GetBlobClient($"users/{oid}/{Guid.NewGuid()}-{file.FileName}");
+        var fileName = $"{Guid.NewGuid()}-{file.FileName}";
+        var blob = container.GetBlobClient($"users/{oid}/{fileName}");
 
-    using var stream = file.OpenReadStream();
-    await blob.UploadAsync(stream);
+        using var stream = file.OpenReadStream();
+        await blob.UploadAsync(stream);
 
-    return Ok(new { message = "Uploaded successfully" });
-}
+        return Ok(new { message = "Uploaded successfully", file = fileName });
+    }
 
+    // ------------------------------------------------------------
+    // LIST FILES
+    // ------------------------------------------------------------
     [HttpGet("list")]
     public async Task<IActionResult> List()
     {
@@ -60,7 +67,6 @@ public async Task<IActionResult> Upload([FromForm] IFormFile file)
 
         await foreach (var blobItem in containerClient.GetBlobsAsync(prefix: prefix))
         {
-            // Strip the "users/{oid}/" prefix from names
             var shortName = blobItem.Name.Substring(prefix.Length);
             files.Add(shortName);
         }
